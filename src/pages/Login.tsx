@@ -4,6 +4,10 @@ import ErrorAlert from "../components/common/ErrorAlert";
 import { useNavigate } from "react-router-dom";
 import { instance } from "../instances/baseUrl";
 import useAuth from "../hooks/useAuth";
+import {
+  toasterFailureFunction,
+  toasterSuccessFunction,
+} from "../helpers/toastHelper";
 
 function Login() {
   const [error, setError] = useState("");
@@ -17,6 +21,7 @@ function Login() {
         });
         const { mobile, name, accessToken } = result.data;
         setAuth({ mobile, name, accessToken });
+        toasterSuccessFunction("Login successfull.");
         navigate("/dashboard");
       } else {
         console.log(authResult);
@@ -24,6 +29,7 @@ function Login() {
       }
     } catch (e) {
       setError("Failed to login with google.");
+      toasterFailureFunction("Failed to login.");
       console.log("Error while Google Login...", e);
     }
   };

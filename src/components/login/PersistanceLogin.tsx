@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import useRefreshtoken from "../../hooks/useRefreshToken";
+import { RingLoader } from "react-spinners";
 
 function PersistanceLogin() {
   const [loading, setLoading] = useState(true);
@@ -27,7 +28,17 @@ function PersistanceLogin() {
     console.log(auth?.accessToken);
     console.log(loading);
   }, [loading]);
-  return <>{loading ? <p>Loading...</p> : <Outlet />}</>;
+  return (
+    <>
+      {loading ? (
+        <div className="min-h-screen w-full flex items-center justify-center">
+          <RingLoader color="#2563eb" size={80} />
+        </div>
+      ) : (
+        <Outlet />
+      )}
+    </>
+  );
 }
 
 export default PersistanceLogin;
