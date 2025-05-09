@@ -24,13 +24,11 @@ function Login() {
         toasterSuccessFunction("Login successfull.");
         navigate("/dashboard");
       } else {
-        console.log(authResult);
         throw new Error("Missing auth code");
       }
-    } catch (e) {
+    } catch {
       setError("Failed to login with google.");
       toasterFailureFunction("Failed to login.");
-      console.log("Error while Google Login...", e);
     }
   };
 
@@ -45,6 +43,7 @@ function Login() {
     onSuccess: handleSuccess,
     onError: handleError,
     flow: "auth-code",
+    scope: "https://www.googleapis.com/auth/calendar.readonly",
   });
   useEffect(() => {
     const checkFunction = async () => {

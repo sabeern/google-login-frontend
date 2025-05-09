@@ -12,8 +12,8 @@ function PersistanceLogin() {
     const verifyRefreshToken = async () => {
       try {
         await refresh();
-      } catch (err) {
-        console.log(err);
+      } catch {
+        // console.log(err);
       } finally {
         setLoading(false);
       }
@@ -24,10 +24,6 @@ function PersistanceLogin() {
       setLoading(false);
     }
   }, []);
-  useEffect(() => {
-    console.log(auth?.accessToken);
-    console.log(loading);
-  }, [loading]);
   return (
     <>
       {loading ? (

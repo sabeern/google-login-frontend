@@ -13,13 +13,11 @@ const useAxiosPrivate = () => {
   const { auth } = useAuth();
 
   useEffect(() => {
-    console.log("i worked");
     const requestIntercept = axiosPrivate.interceptors.request.use(
       (config: CustomAxiosRequestConfig) => {
         if (!config.headers["Authorization"]) {
           config.headers["Authorization"] = `Bearer ${auth?.accessToken}`;
           if (config.server) {
-            console.log("hi", config.server);
             config.baseURL = config.server;
           }
         }

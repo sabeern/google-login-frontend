@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -10,7 +9,7 @@ import NotFound from "./pages/NotFound";
 
 function App() {
   const GoogleWrapper = () => (
-    <GoogleOAuthProvider clientId="655411774165-at0rks522f2btc89rgda57qo7dsgkbhb.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
       <Login />
     </GoogleOAuthProvider>
   );
