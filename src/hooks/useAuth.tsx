@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import AuthContext from "../store/AuthContext";
 
+// The useAuth custom hook provides easy access to authentication data and functions from the AuthContext.
+
 function useAuth() {
   const context = useContext(AuthContext);
   if (!context) {

@@ -3,14 +3,17 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import useRefreshtoken from "../../hooks/useRefreshToken";
 import { RingLoader } from "react-spinners";
+import useLogout from "../../hooks/useLogout";
 
 function PersistanceLogin() {
   const [loading, setLoading] = useState(true);
   const { auth } = useAuth();
+  const signout = useLogout();
   const refresh = useRefreshtoken();
   useEffect(() => {
     const verifyRefreshToken = async () => {
       try {
+        // Create a new access token for persistent login if a refresh token is available.
         await refresh();
       } catch {
         // console.log(err);
@@ -18,9 +21,13 @@ function PersistanceLogin() {
         setLoading(false);
       }
     };
-    if (!auth?.accessToken) {
+    const persist = localStorage.getItem("persist");
+    // If "persist" is enabled and there's no access token, try refreshing
+    if (persist == "true" && !auth?.accessToken) {
       verifyRefreshToken();
     } else {
+      //if persist is disabled, then user refresh logout and remove jwt from cookie
+      signout();
       setLoading(false);
     }
   }, []);

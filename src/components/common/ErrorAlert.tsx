@@ -5,6 +5,8 @@ type ErrorPropsType = {
   setError: Dispatch<SetStateAction<string>>;
 };
 
+// Displays a styled error message with a close button.
+
 function ErrorAlert({ children, setError }: ErrorPropsType) {
   return (
     <div

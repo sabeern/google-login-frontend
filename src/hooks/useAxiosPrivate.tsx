@@ -8,6 +8,8 @@ interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
   server?: string;
 }
 
+// Custom hook to return a configured Axios instance
+
 const useAxiosPrivate = () => {
   const refresh = useRefreshtoken();
   const { auth } = useAuth();
@@ -45,7 +47,6 @@ const useAxiosPrivate = () => {
       axiosPrivate.interceptors.response.eject(responseIntercept);
     };
   });
-  //, [auth, refresh]
   return axiosPrivate;
 };
 

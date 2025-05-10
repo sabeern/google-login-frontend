@@ -4,6 +4,7 @@ import useAuth from "../hooks/useAuth";
 function NotFound() {
   const { auth } = useAuth();
   const navigate = useNavigate();
+  // Redirect user based on their auth status
   const navigateToPage = () => {
     if (auth?.accessToken) navigate("/dashboard");
     else navigate("/login");

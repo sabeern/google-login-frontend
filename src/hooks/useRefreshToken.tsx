@@ -1,6 +1,8 @@
 import { instance } from "../instances/baseUrl";
 import useAuth from "./useAuth";
 
+// Custom hook to refresh the access token using a stored refresh token.
+
 function useRefreshtoken() {
   const { setAuth } = useAuth();
   const refresh = async () => {

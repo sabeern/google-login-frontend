@@ -16,6 +16,7 @@ function MobileUpdateForm({ mobile }: { mobile: string | undefined }) {
   const [loading, setLoading] = useState(false);
   const { setAuth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
+  // Define schema for mobile number validation using Zod
   const schema = z.object({
     mobile: z
       .string({
@@ -26,7 +27,9 @@ function MobileUpdateForm({ mobile }: { mobile: string | undefined }) {
         message: "Enter valid mobile number.",
       }),
   });
+  // Define form data type based on schema
   type FormData = z.infer<typeof schema>;
+  // Set up React Hook Form
   const {
     register,
     handleSubmit,
@@ -35,6 +38,7 @@ function MobileUpdateForm({ mobile }: { mobile: string | undefined }) {
   } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
+  // Handle form submission
   const onSubmit = async (data: Record<string, string>) => {
     try {
       setLoading(true);
@@ -55,11 +59,13 @@ function MobileUpdateForm({ mobile }: { mobile: string | undefined }) {
       setLoading(false);
     }
   };
+  // Pre-fill mobile field if provided via props
   useEffect(() => {
     if (mobile) {
       setValue("mobile", mobile);
     }
   }, [mobile]);
+  // Show loader while updating
   if (loading) {
     return (
       <div className="min-h-screen w-full flex items-center justify-center">

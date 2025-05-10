@@ -1,5 +1,8 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+// Function to display success toast notification
+
 export const toasterSuccessFunction = (msg: string) => {
   toast.success(msg, {
     position: "top-right",
@@ -12,6 +15,9 @@ export const toasterSuccessFunction = (msg: string) => {
     theme: "colored",
   });
 };
+
+// Function to display error toast notification
+
 export const toasterFailureFunction = (msg: string) => {
   toast.error(msg, {
     position: "top-right",
