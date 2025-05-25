@@ -16,7 +16,10 @@ jobs:
           node-version: "20.3"
       - name: Install npm dependencies
         run: npm install
-      - name: Run build task
+      - name: Build with env variables
+        env:
+          VITE_BASE_URL: ${{ secrets.VITE_BASE_URL }}
+          VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
         run: npm run build --if-present
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@main
