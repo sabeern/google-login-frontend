@@ -72,7 +72,7 @@ function Login() {
       <div className="grid grid-cols-2 md:w-2/3 min-h-screen border-2 rounded shadow-lg bg-white">
         {/* Left Panel */}
         <div className="bg-[#002435] text-white md:flex flex-col gap-6 items-center justify-center hidden">
-          <h3 className="text-2xl font-bold">Welcome Back Again</h3>
+          <h3 className="text-2xl font-bold">Again Welcome Back</h3>
           <p className="text-lg">Sign in to continue to your account</p>
         </div>
 
