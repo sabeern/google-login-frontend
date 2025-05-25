@@ -1,0 +1,30 @@
+name: ReactApp
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.3"
+      - name: Install npm dependencies
+        run: npm install
+      - name: Run build task
+        run: npm run build --if-present
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY_AS }}
+          ARGS: "-rlgoDzvc -i --delete"
+          SOURCE: "dist/"
+          REMOTE_HOST: ${{ secrets.AS_PROD_DIV1 }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: "/home/ubuntu/client"
+          EXCLUDE: "/dist/"
