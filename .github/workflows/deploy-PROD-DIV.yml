@@ -26,5 +26,5 @@ jobs:
           SOURCE: "dist/"
           REMOTE_HOST: ${{ secrets.AS_PROD_DIV1 }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: "/home/ubuntu/client"
+          TARGET: "/var/www/client"
           EXCLUDE: "/dist/"
